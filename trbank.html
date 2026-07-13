@@ -24,19 +24,13 @@
 
 </div>
 
-
 <div style="padding:20px;">
-
 
 <div class="card">
 
 <h3>💶 Mevcut Bakiye</h3>
 
-<br>
-
-<h1 style="color:#0057b8;">
-250 €
-</h1>
+<h1 id="balance" style="color:#0057b8;">0 €</h1>
 
 <p class="small">
 Güncel hesap bakiyesi
@@ -44,40 +38,19 @@ Güncel hesap bakiyesi
 
 </div>
 
-
-
 <div class="menu">
 
-
-<a href="deposit.html">
-
-<div class="item">
-
-<div class="icon">📷</div>
-
-<h3>Euro Yükle</h3>
-
-<p>Fotoğraf ile yükle</p>
-
-</div>
-
-</a>
-
-
-
-<div class="item" onclick="sendMoney()">
+<div class="item" id="sendMoneyBtn">
 
 <div class="icon">💸</div>
 
 <h3>Para Gönder</h3>
 
-<p>Kullanıcıya gönder</p>
+<p>Kullanıcıya para gönder</p>
 
 </div>
 
-
-
-<div class="item" onclick="requestMoney()">
+<div class="item" id="requestMoneyBtn">
 
 <div class="icon">📩</div>
 
@@ -87,96 +60,55 @@ Güncel hesap bakiyesi
 
 </div>
 
-
+<a href="deposit.html">
 
 <div class="item">
+
+<div class="icon">📷</div>
+
+<h3>Euro Yükle</h3>
+
+<p>Dekont gönder</p>
+
+</div>
+
+</a>
+
+<div class="item" id="historyBtn">
 
 <div class="icon">📜</div>
 
 <h3>Geçmiş</h3>
 
-<p>İşlemler</p>
+<p>İşlem kayıtları</p>
 
 </div>
 
-
-
 </div>
-
-
 
 <div class="card">
 
 <h3>📜 Son İşlemler</h3>
 
-<br>
+<div id="historyList">
 
-<p>
-🟢 +50 € Euro yükleme
-</p>
+Yükleniyor...
 
-<hr>
-
-<p>
-🔴 -20 € Para gönderme
-</p>
-
-<hr>
-
-<p>
-🟢 +100 € Admin onayı
-</p>
-
-
-</div>
-
-
-</div>
-
-
-
-<div class="bottom">
-
-<div>
-🏠
-<span>Ana Sayfa</span>
-</div>
-
-<div>
-🏦
-<span>TRBank</span>
-</div>
-
-<div>
-👤
-<span>Profil</span>
 </div>
 
 </div>
 
+<button onclick="location.href='home.html'">
+
+⬅ Ana Sayfa
+
+</button>
 
 </div>
 
+</div>
 
-
-<script>
-
-function sendMoney(){
-
-alert("Para gönderme sistemi yakında aktif olacak.");
-
-}
-
-
-function requestMoney(){
-
-alert("Para isteme sistemi yakında aktif olacak.");
-
-}
-
-</script>
-
+<script type="module" src="./trbank.js"></script>
 
 </body>
-
 </html>
