@@ -9,7 +9,10 @@ import {
     setDoc
 } from "./firebase.js";
 
-// Sayfalar
+// ==========================
+// Sayfa Değiştirme
+// ==========================
+
 window.showRegister = () => {
     document.getElementById("loginPage").style.display = "none";
     document.getElementById("registerPage").style.display = "block";
@@ -20,7 +23,10 @@ window.showLogin = () => {
     document.getElementById("registerPage").style.display = "none";
 };
 
+// ==========================
 // Kayıt
+// ==========================
+
 window.register = async () => {
 
     const username = document.getElementById("regUser").value.trim().toLowerCase();
@@ -39,7 +45,7 @@ window.register = async () => {
 
     try {
 
-        const email = username + "@gmail.com";
+        const email = username + "@rpdevlet.com";
 
         const user = await createUserWithEmailAndPassword(
             auth,
@@ -62,8 +68,8 @@ window.register = async () => {
 
     } catch (e) {
 
-        alert(e.message);
         console.error(e);
+        alert(e.message);
 
     }
 
@@ -73,28 +79,28 @@ window.register = async () => {
 // Giriş
 // ==========================
 
-window.login = async function () {
+window.login = async () => {
 
-    const username = document.getElementById("loginUser").value.trim();
+    const username = document.getElementById("loginUser").value.trim().toLowerCase();
     const password = document.getElementById("loginPass").value;
 
     try {
 
-        // ADMIN GİRİŞİ
-        if (username === "A.B") {
+        // Admin hesabı
+        if (username === "a.b") {
 
             await signInWithEmailAndPassword(
                 auth,
-                "A.B@gmail.com",
-                "A.B4141"
+                "a.b@rpdevlet.com",
+                password
             );
 
             location.href = "admin.html";
             return;
         }
 
-        // NORMAL KULLANICI
-        const email = username + "@rpdevlet.app";
+        // Normal kullanıcı
+        const email = username + "@rpdevlet.com";
 
         await signInWithEmailAndPassword(
             auth,
@@ -104,16 +110,11 @@ window.login = async function () {
 
         location.href = "home.html";
 
-    } catch (err) {
+    } catch (e) {
 
-        console.error(err);
+        console.error(e);
         alert("Kullanıcı adı veya şifre yanlış.");
 
     }
 
-};
-window.login = window.login;
-window.register = window.register;
-window.showRegister = window.showRegister;
-window.showLogin = window.showLogin;
 };
