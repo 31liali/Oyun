@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+
+<link rel="manifest" href="manifest.json">
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RPDevlet</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="phone">
+
+<div id="loginPage">
+
+<div class="header">
+
+<h1>🏛 RPDevlet</h1>
+
+<p>Türkiye Roleplay Devlet Sistemi</p>
+
+</div>
+
+<div class="form">
+
+<h2>Giriş Yap</h2>
+
+<input id="loginUser" type="text" placeholder="👤 Kullanıcı Adı">
+
+<input id="loginPass" type="password" placeholder="🔒 Şifre">
+
+<button class="primary" onclick="login()">
+
+Giriş Yap
+
+</button>
+
+<button class="secondary" onclick="showRegister()">
+
+Hesabın yok mu? Kayıt Ol
+
+</button>
+
+</div>
+
+</div>
+
+<!-- KAYIT -->
+
+<div id="registerPage" style="display:none;">
+
+<div class="header">
+
+<h1>🏛 RPDevlet</h1>
+
+<p>Yeni Hesap Oluştur</p>
+
+</div>
+
+<div class="form">
+
+<h2>Kayıt Ol</h2>
+
+<input id="regUser" type="text" placeholder="👤 Kullanıcı Adı">
+
+<input id="regMail" type="email" placeholder="📧 E-Posta">
+
+<input id="regPass" type="password" placeholder="🔒 Şifre">
+
+<input id="regPass2" type="password" placeholder="🔒 Şifre Tekrar">
+
+<button class="primary" onclick="register()">
+
+Hesap Oluştur
+
+</button>
+
+<button class="secondary" onclick="showLogin()">
+
+Zaten hesabın var mı?
+
+</button>
+
+</div>
+
+</div>
+
+<script type="module" src="./script.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js");
+}
+</script>
+
+</body>
+
+</html>

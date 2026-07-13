@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RPDevlet</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="manifest" href="manifest.json">
+
+</head>
+
+
+<body>
+
+
+<div class="phone">
+
+
+<div class="header">
+
+<h1>🏛 RPDevlet</h1>
+
+<p>Türkiye Roleplay Devlet Sistemi</p>
+
+</div>
+
+
+
+<div class="card">
+
+
+<h2>👤 Profil</h2>
+
+
+<p>
+Kullanıcı:
+<span id="username">
+Yükleniyor...
+</span>
+</p>
+
+
+<p>
+💶 Bakiye:
+<span id="balance">
+0 €
+</span>
+</p>
+
+
+<p>
+Rol:
+<span id="role">
+Vatandaş
+</span>
+</p>
+
+
+<p>
+📅 Kayıt:
+<span id="created">
+-
+</span>
+</p>
+
+
+<button id="logoutBtn">
+🚪 Çıkış Yap
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="menu">
+
+
+<button onclick="location.href='trbank.html'">
+
+🏦 TRBank
+
+</button>
+
+
+<button onclick="location.href='notifications.html'">
+
+🔔 Bildirimler
+
+</button>
+
+
+<button onclick="location.href='license.html'">
+
+🚗 Dijital Ehliyet
+
+</button>
+
+
+<button onclick="location.href='property.html'">
+
+🏠 Tapu
+
+</button>
+
+
+<button onclick="location.href='fines.html'">
+
+🚔 Cezalar
+
+</button>
+
+
+<button onclick="location.href='documents.html'">
+
+📄 Belgeler
+
+</button>
+
+
+<button onclick="location.href='deposit.html'">
+
+💶 Euro Yükle
+
+</button>
+
+
+<button onclick="location.href='admin.html'">
+
+👮 Admin Paneli
+
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+
+<script type="module" src="./script.js"></script>
+
+<script>
+
+if("serviceWorker" in navigator){
+
+    navigator.serviceWorker.register("./sw.js");
+
+}
+
+</script>
+
+</body>
+</html>
