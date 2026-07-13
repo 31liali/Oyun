@@ -27,6 +27,14 @@ import {
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
+import {
+    getStorage,
+    ref,
+    uploadBytes,
+    getDownloadURL,
+    deleteObject
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
+
 const firebaseConfig = {
     apiKey: "AIzaSyASrc6oTod2cmThLCVE9eq67WYXECjUs-s",
     authDomain: "rpdevlet.firebaseapp.com",
@@ -41,10 +49,12 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 export {
     auth,
     db,
+    storage,
 
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -65,5 +75,10 @@ export {
     getDocs,
 
     addDoc,
-    serverTimestamp
+    serverTimestamp,
+
+    ref,
+    uploadBytes,
+    getDownloadURL,
+    deleteObject
 };
