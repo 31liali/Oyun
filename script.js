@@ -6,7 +6,8 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     doc,
-    setDoc
+    setDoc,
+    getDoc
 } from "./firebase.js";
 
 // ==========================
@@ -47,24 +48,30 @@ window.register = async () => {
 
         const email = username + "@rpdevlet.com";
 
-        const user = await createUserWithEmailAndPassword(
+        const result = await createUserWithEmailAndPassword(
             auth,
             email,
             password
         );
 
+        const isAdmin = (email === "a.b@rpdevlet.com");
+
         await setDoc(
-            doc(db, "users", user.user.uid),
+            doc(db, "users", result.user.uid),
             {
                 username,
-                balance: 0,
-                role: "Vatandaş",
-                createdAt: Date.now(),
-                admin: false
+                balance: isAdmin ? 999999999 : 0,
+                role: isAdmin ? "Admin" : "Vatandaş",
+                admin: isAdmin,
+                createdAt: Date.now()
             }
         );
 
-        location.href = "home.html";
+        if (isAdmin) {
+            location.href = "admin.html";
+        } else {
+            location.href = "home.html";
+        }
 
     } catch (e) {
 
@@ -86,29 +93,30 @@ window.login = async () => {
 
     try {
 
-        // Admin hesabı
-        if (username === "a.b") {
-
-            await signInWithEmailAndPassword(
-                auth,
-                "a.b@rpdevlet.com",
-                password
-            );
-
-            location.href = "admin.html";
-            return;
-        }
-
-        // Normal kullanıcı
         const email = username + "@rpdevlet.com";
 
-        await signInWithEmailAndPassword(
+        const result = await signInWithEmailAndPassword(
             auth,
             email,
             password
         );
 
-        location.href = "home.html";
+        const snap = await getDoc(
+            doc(db, "users", result.user.uid)
+        );
+
+        if (!snap.exists()) {
+            alert("Kullanıcı verisi bulunamadı.");
+            return;
+        }
+
+        const userData = snap.data();
+
+        if (userData.admin === true) {
+            location.href = "admin.html";
+        } else {
+            location.href = "home.html";
+        }
 
     } catch (e) {
 
