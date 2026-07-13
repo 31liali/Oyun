@@ -69,28 +69,49 @@ window.register = async () => {
 
 };
 
+// ==========================
 // Giriş
-window.login = async () => {
+// ==========================
 
-    const username = document.getElementById("loginUser").value.trim().toLowerCase();
+window.login = async function () {
+
+    const username = document.getElementById("loginUser").value.trim();
     const password = document.getElementById("loginPass").value;
 
     try {
 
+        // ADMIN GİRİŞİ
+        if (username === "A.B") {
+
+            await signInWithEmailAndPassword(
+                auth,
+                "A.B@gmail.com",
+                "A.B4141"
+            );
+
+            location.href = "admin.html";
+            return;
+        }
+
+        // NORMAL KULLANICI
+        const email = username + "@rpdevlet.app";
+
         await signInWithEmailAndPassword(
             auth,
-            username + "@gmail.com",
+            email,
             password
         );
 
         location.href = "home.html";
 
-    } catch (e) {
+    } catch (err) {
 
+        console.error(err);
         alert("Kullanıcı adı veya şifre yanlış.");
-        console.error(e);
 
     }
+
+};
 window.login = window.login;
 window.register = window.register;
 window.showRegister = window.showRegister;
