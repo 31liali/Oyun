@@ -13,12 +13,9 @@
 
 </head>
 
-
 <body>
 
-
 <div class="phone">
-
 
 <div class="header">
 
@@ -28,7 +25,19 @@
 
 </div>
 
+<!-- İstatistikler -->
 
+<div class="card">
+
+<h2>📊 İstatistikler</h2>
+
+<p>Toplam Kullanıcı: <span id="userCount">0</span></p>
+
+<p>Toplam Bakiye: <span id="totalBalance">0 €</span></p>
+
+</div>
+
+<!-- Kullanıcılar -->
 
 <div class="card">
 
@@ -42,7 +51,97 @@ Yükleniyor...
 
 </div>
 
+<!-- Para Yönetimi -->
 
+<div class="card">
+
+<h2>💶 Para İşlemleri</h2>
+
+<input
+id="moneyUsername"
+type="text"
+placeholder="Kullanıcı Adı">
+
+<input
+id="moneyAmount"
+type="number"
+placeholder="Miktar">
+
+<button id="sendMoneyBtn">
+
+💸 Para Gönder
+
+</button>
+
+</div>
+
+<!-- Ceza -->
+
+<div class="card">
+
+<h2>🚔 Ceza Sistemi</h2>
+
+<input
+id="fineUsername"
+type="text"
+placeholder="Kullanıcı Adı">
+
+<input
+id="fineReason"
+type="text"
+placeholder="Ceza Sebebi">
+
+<input
+id="fineAmount"
+type="number"
+placeholder="Ceza Tutarı">
+
+<button id="fineBtn">
+
+🚔 Ceza Kes
+
+</button>
+
+</div>
+
+<!-- Ehliyet -->
+
+<div class="card">
+
+<h2>🚗 Ehliyet</h2>
+
+<input
+id="licenseUsername"
+type="text"
+placeholder="Kullanıcı Adı">
+
+<button id="giveLicenseBtn">
+
+✅ Ehliyet Ver
+
+</button>
+
+<button id="removeLicenseBtn">
+
+❌ Ehliyeti Al
+
+</button>
+
+</div>
+
+<!-- TRBank -->
+
+<div class="card">
+
+<h2>🏦 TRBank Talepleri</h2>
+
+<div id="depositRequests">
+
+Henüz talep yok.
+
+</div>
+
+</div>
 
 <button onclick="location.href='home.html'">
 
@@ -50,15 +149,9 @@ Yükleniyor...
 
 </button>
 
-
-
 </div>
 
-
-
-<script type="module" src="admin.js"></script>
-
+<script type="module" src="./admin.js"></script>
 
 </body>
-
 </html>
