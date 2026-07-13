@@ -79,7 +79,7 @@ window.login = async () => {
 
         await signInWithEmailAndPassword(
             auth,
-            username + "@rpdevlet.app",
+            username + "@gmail.com",
             password
         );
 
