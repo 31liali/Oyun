@@ -39,7 +39,7 @@ window.register = async () => {
 
     try {
 
-        const email = username + "@rpdevlet.app";
+        const email = username + "@gmail.com";
 
         const user = await createUserWithEmailAndPassword(
             auth,
