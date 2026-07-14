@@ -10,7 +10,9 @@ import {
     collection,
     getDocs,
     addDoc,
-    serverTimestamp
+    serverTimestamp,
+    query,
+    where
 } from "./firebase.js";
 
 const usersBox = document.getElementById("usersList");
@@ -276,4 +278,104 @@ async function loadDepositRequests() {
 
 }
 
-loadDepositRequests();
+async function loadDepositRequests() {
+
+    const box = document.getElementById("depositRequests");
+
+    if (!box) return;
+
+    box.innerHTML = "";
+
+    const snap = await getDocs(
+        query(
+            collection(db, "deposits"),
+            where("status", "==", "waiting")
+        )
+    );
+
+    if (snap.empty) {
+
+        box.innerHTML = "<p>Bekleyen talep yok.</p>";
+        return;
+
+    }
+
+    snap.forEach((item) => {
+
+        const data = item.data();
+
+        box.innerHTML += `
+
+<div class="card">
+
+<h3>👤 ${data.username}</h3>
+
+<p>💶 ${data.amount} €</p>
+
+<img
+src="${data.imageUrl}"
+style="width:100%;border-radius:10px;margin-top:10px;">
+
+<br><br>
+
+<button onclick="approveDeposit('${item.id}','${data.userId}',${data.amount})">
+
+✅ Onayla
+
+</button>
+
+<button onclick="rejectDeposit('${item.id}')">
+
+❌ Reddet
+
+</button>
+
+</div>
+
+`;
+
+    });
+
+}
+window.approveDeposit = async function(depositId,userId,amount){
+
+    const userRef = doc(db,"users",userId);
+
+    const userSnap = await getDoc(userRef);
+
+    if(!userSnap.exists()) return;
+
+    const data = userSnap.data();
+
+    await updateDoc(userRef,{
+        balance:Number(data.balance||0)+Number(amount)
+    });
+
+    await updateDoc(
+        doc(db,"deposits",depositId),
+        {
+            status:"approved"
+        }
+    );
+
+    alert("Para hesaba aktarıldı.");
+
+    loadUsers();
+    loadDepositRequests();
+
+};
+
+window.rejectDeposit = async function(depositId){
+
+    await updateDoc(
+        doc(db,"deposits",depositId),
+        {
+            status:"rejected"
+        }
+    );
+
+    alert("Talep reddedildi.");
+
+    loadDepositRequests();
+
+};
